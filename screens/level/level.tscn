@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5nx61f7ddy4l"]
+
+[ext_resource type="PackedScene" uid="uid://dpvnvxtcv8fe8" path="res://actors/player/player.tscn" id="1_8nl50"]
+[ext_resource type="Script" path="res://screens/level/level.gd" id="1_rbt78"]
+[ext_resource type="Texture2D" uid="uid://cy7ul5002grko" path="res://screens/level/background.png" id="2_auaxg"]
+[ext_resource type="FontData" uid="uid://co2lwwp5yv8kf" path="res://fonts/main.ttf" id="4_6miwx"]
+
+[sub_resource type="Font" id="Font_pdcqx"]
+data/0 = ExtResource( "4_6miwx" )
+
+[node name="Level" type="Node"]
+script = ExtResource( "1_rbt78" )
+
+[node name="LeftPlant" parent="." instance=ExtResource( "1_8nl50" )]
+position = Vector2(30, 595)
+scale = Vector2(1.2, 1.2)
+player_color = Color(0, 0.494118, 0, 1)
+end_xpos = 580.0
+
+[node name="RightPlant" parent="." instance=ExtResource( "1_8nl50" )]
+position = Vector2(560, 523)
+scale = Vector2(1.2, 1.2)
+move_action = "game_rightplant_move"
+player_color = Color(0, 0.737255, 0.756863, 1)
+end_xpos = 20.0
+
+[node name="Background" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(0, 1024)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer"]
+texture = ExtResource( "2_auaxg" )
+centered = false
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HUDRoot" type="Control" parent="HUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/HUDRoot"]
+minimum_size = Vector2(0, 60)
+anchor_right = 1.0
+theme_override_constants/separation = 70
+alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="HUD/HUDRoot/HBoxContainer"]
+offset_left = 74.0
+offset_right = 242.0
+offset_bottom = 61.0
+theme_override_fonts/font = SubResource( "Font_pdcqx" )
+theme_override_font_sizes/font_size = 40
+text = "Score: 0"
+
+[node name="HiScoreLabel" type="Label" parent="HUD/HUDRoot/HBoxContainer"]
+offset_left = 312.0
+offset_right = 526.0
+offset_bottom = 61.0
+theme_override_fonts/font = SubResource( "Font_pdcqx" )
+theme_override_font_sizes/font_size = 40
+text = "HiScore: 0"
+
+[connection signal="area_entered" from="LeftPlant" to="." method="_on_plant_area_entered"]
+[connection signal="area_entered" from="RightPlant" to="." method="_on_plant_area_entered"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://vywemwvvpltn"]
+
+[ext_resource type="Script" path="res://actors/obstacle/obstacle.gd" id="1_kuqvw"]
+[ext_resource type="Texture2D" uid="uid://bnv2sobwdtr8v" path="res://actors/obstacle/fire.png" id="2_t6f4o"]
+[ext_resource type="Texture2D" uid="uid://bfith7xdllqeu" path="res://actors/obstacle/human.png" id="3_savt8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_u6yqn"]
+blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_re345"]
+size = Vector2(128, 128)
+
+[node name="Obstacle" type="Area2D"]
+collision_layer = 2
+script = ExtResource( "1_kuqvw" )
+
+[node name="SpriteFire" type="Sprite2D" parent="."]
+material = SubResource( "CanvasItemMaterial_u6yqn" )
+texture = ExtResource( "2_t6f4o" )
+
+[node name="SpriteHuman" type="Sprite2D" parent="."]
+texture = ExtResource( "3_savt8" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( "RectangleShape2D_re345" )

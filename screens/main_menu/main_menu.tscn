@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://3kbboltrikit"]
+
+[ext_resource type="Script" path="res://screens/main_menu/main_menu.gd" id="1_drg5y"]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( "1_drg5y" )
+
+[node name="TitleLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -87.0
+offset_top = 31.0
+offset_right = 98.0
+offset_bottom = 57.0
+grow_horizontal = 2
+text = "Super dope debut game"
+__meta__ = {
+"_edit_layout_mode": 1,
+"_edit_use_custom_anchors": false
+}
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 250.0
+offset_top = 190.0
+offset_right = 350.0
+offset_bottom = 221.0
+text = "Start Game!"
+__meta__ = {
+"_edit_layout_mode": 0,
+"_edit_use_custom_anchors": false
+}
+
+[node name="QuitButton" type="Button" parent="."]
+offset_left = 253.0
+offset_top = 238.0
+offset_right = 353.0
+offset_bottom = 269.0
+text = "Quit Game!"
+__meta__ = {
+"_edit_layout_mode": 0,
+"_edit_use_custom_anchors": false
+}
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
