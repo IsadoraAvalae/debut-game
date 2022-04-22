@@ -11,7 +11,8 @@ blend_mode = 1
 size = Vector2(128, 128)
 
 [node name="Obstacle" type="Area2D"]
-collision_layer = 2
+collision_layer = 0
+collision_mask = 0
 script = ExtResource( "1_kuqvw" )
 
 [node name="SpriteFire" type="Sprite2D" parent="."]

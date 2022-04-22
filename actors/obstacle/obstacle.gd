@@ -1,13 +1,18 @@
 extends Area2D
 
+const LEFT_COLOR := Color.GREEN
+const RIGHT_COLOR := Color.CYAN
+
 var move_speed: float
+var is_left: bool
 
 func _ready() -> void:
-	$SpriteHuman.modulate = Color(
-		randf_range(0.5, 1),
-		randf_range(0.5, 1),
-		randf_range(0.5, 1)
-	)
+	if is_left:
+		modulate = LEFT_COLOR
+		set_collision_layer_value(2, true)
+	else:
+		modulate = RIGHT_COLOR
+		set_collision_layer_value(4, true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

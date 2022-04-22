@@ -17,6 +17,7 @@ var is_player_protected := false
 
 var _current_obstacle_speed := 200.0
 var _powerup_types: Array
+var _is_obstacle_left := false
 
 
 func _enter_tree() -> void:
@@ -30,6 +31,7 @@ func _exit_tree() -> void:
 func _ready() -> void:
 	hiscore_text.text = "HiScore: %d" % Globals.highscore
 	_powerup_types.append(load("res://actors/powerup/protection_powerup.tscn"))
+	_powerup_types.append(load("res://actors/powerup/powerup_score.tscn"))
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,6 +46,8 @@ func _on_spawn_timer_timeout() -> void:
 	var instance := OBSTACLE_SCENE.instantiate() as Area2D
 	instance.global_position = Vector2(randf_range(0, 600), -200)
 	instance.move_speed = _current_obstacle_speed
+	instance.is_left = _is_obstacle_left
+	_is_obstacle_left = !_is_obstacle_left
 	
 	add_child(instance)
 	

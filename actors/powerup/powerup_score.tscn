@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://k7ynadxd3qu6"]
+
+[ext_resource type="PackedScene" uid="uid://brrih1a0hiypp" path="res://actors/powerup/powerup.tscn" id="1_clbqa"]
+[ext_resource type="Script" path="res://actors/powerup/powerup_score.gd" id="2_p0b2c"]
+
+[node name="Powerup" instance=ExtResource( "1_clbqa" )]
+script = ExtResource( "2_p0b2c" )
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0, 0.0784314, 1, 1)

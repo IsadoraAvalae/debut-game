@@ -14,15 +14,33 @@ script = ExtResource( "1_rbt78" )
 [node name="LeftPlant" parent="." instance=ExtResource( "1_8nl50" )]
 position = Vector2(30, 595)
 scale = Vector2(1.2, 1.2)
-player_color = Color(0, 0.494118, 0, 1)
-end_xpos = 580.0
+collision_layer = 1
+collision_mask = 2
+player_color = Color(0, 0.411765, 0, 1)
+player_bright_color = Color(0, 1, 0, 1)
+gravity_vector = Vector2(-20, 0)
+horizontal_range = Vector2(50, 550)
+acceleration = Vector2(70, 0)
+
+[node name="CheckArea" parent="LeftPlant" index="3"]
+collision_layer = 0
+collision_mask = 2
 
 [node name="RightPlant" parent="." instance=ExtResource( "1_8nl50" )]
 position = Vector2(560, 523)
 scale = Vector2(1.2, 1.2)
+collision_layer = 4
+collision_mask = 8
 move_action = "game_rightplant_move"
-player_color = Color(0, 0.737255, 0.756863, 1)
-end_xpos = 20.0
+player_color = Color(0, 0.447059, 0.458824, 1)
+player_bright_color = Color(0, 1, 1, 1)
+gravity_vector = Vector2(20, 0)
+horizontal_range = Vector2(50, 550)
+acceleration = Vector2(-70, 0)
+
+[node name="CheckArea" parent="RightPlant" index="3"]
+collision_layer = 0
+collision_mask = 8
 
 [node name="Background" type="ParallaxBackground" parent="."]
 
@@ -67,3 +85,6 @@ text = "HiScore: 0"
 [connection signal="area_entered" from="LeftPlant" to="." method="_on_plant_area_entered"]
 [connection signal="area_entered" from="RightPlant" to="." method="_on_plant_area_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+
+[editable path="LeftPlant"]
+[editable path="RightPlant"]
